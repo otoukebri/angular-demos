@@ -1,0 +1,65 @@
+	<!DOCTYPE html>
+	<html ng-app="routing_sample">
+	<head >
+		<title>Angular controller</title>
+	 <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">	
+	</head>
+	<body ng-controller="NavigationCtrl" >
+	<h1>Welcome {{ hello}}</h1>
+	<div class="navbar">
+	    <div class="navbar-inner">
+	        <ul class="nav">
+	            <li><a href="#/admin/users/list">List users</a></li>
+	            <li><a href="#/admin/users/new">New user</a></li>
+	        </ul>
+	    </div>
+	</div>
+
+
+	<div class="container-fluid" ng-view>
+	    <!-- Route-dependent content goes here -->
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="libs/angular.js"></script>
+	<script type="text/javascript">
+
+	angular.module('routing_sample',[])
+		.config( function($routeProvider) {
+			$routeProvider
+			.when('/admin/users/list', {templateUrl:"tpls/module/list.html" })
+			.when('/admin/users/new' , {templateUrl:"tpls/module/new.html" })
+			.when('/admin/users/edit', {templateUrl:"tpls/module/edit.html" })
+	        .otherwise({redirectTo: '/admin/users/list.html'});
+		})
+		.factory('Users',function(){ 
+			var users = [
+				{id :1  ,name:"Ali"},
+				{id :2  ,name:"Oussema"}
+			];
+
+			return {
+				query : function()  {return users; },
+				add: function(user) { users.push(user); },
+				get : function(id) { return users[id]; },
+				update: function(id,user) { user[id] = user;}
+			};
+
+		})
+	  .controller('NavigationCtrl', function ($scope, $location) {
+	  	$scope.hello = "oussema";
+	  })
+
+	  .controller('ListUsersCtrl', function($scope,Users){
+	  	$scope.users = Users.query();
+	  })
+
+	  .controller('NewUserCtrl', function($scope,Users){
+	  })
+
+	  .controller('EditUserCtrl', function($scope, $routeParams, Users){
+	  })
+
+	</script>   
+
+	</body>
+	</html>

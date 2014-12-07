@@ -1,0 +1,25 @@
+	<!DOCTYPE html>
+	<html ng-app="click_sample">
+	<head >
+		<title>Angular ng-click</title>
+	</head>
+	<body ng-controller="NavigationCtrl">
+	<a href="#" ng-click="sayHello()" ><h1>Welcome {{hello}}</h1></a>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="libs/angular.js"></script>
+	<script type="text/javascript">
+
+	var myModule = angular.module('click_sample',[]);
+	myModule.controller('NavigationCtrl', function ($scope) {
+	  	$scope.hello = "oussema";
+	  	$scope.sayHello = function() {
+	  		alert("bonjour");
+	  	};
+	});
+
+	
+
+	</script>   
+
+	</body>
+	</html>

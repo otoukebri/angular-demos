@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+	<form ng-submit="showAlert(q)">
+	<input type="text" value="{{msg}}">
+		<input ng-model="q">
+	</form>
+	<script type="text/javascript">
+	var app = angular.module('myApp',[]);
+	app.controller("MainCtrl",function($scope){
+		$scope.msg ="Hello  World";
+		$scope.showAlert = function(q) {
+			alert(q);
+		};
+	}); 	
+
+	</script>
+</body>
+</html>
